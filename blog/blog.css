@@ -38,3 +38,28 @@
 p {
   color: grey;
 }
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar li {
+  display: inline-block;
+  width: 60px;
+  text-align: center;
+  background: powderblue;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.navbar a {
+  font-size: 16px;
+  text-decoration: none;  
+}
+
+a:visited {
+  color : black;
+}
