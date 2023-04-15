@@ -1,0 +1,31 @@
+.main-background {
+  width: 100%;
+  height: 500px;
+  background-image: url(../img/netflix.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 1px;
+}
+
+.main-title { 
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+ul {
+  font-size: 30px;
+  list-style: none;
+  color: powderblue;
+}
+
+ul li {
+  margin: 30px;
+}
+
+a {
+  text-decoration: none; 
+  color: black; 
+}
