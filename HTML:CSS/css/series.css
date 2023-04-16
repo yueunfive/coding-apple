@@ -1,0 +1,53 @@
+.main-background {
+  width: 100%;
+  height: 520px;
+  background-image: url(../img/series.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 1px;
+  position: relative;
+}
+
+.main-title { 
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+ul {
+  font-size: 30px;
+  list-style: none;
+  color: white;
+}
+
+ul li {
+  margin: 30px;
+}
+
+a {
+  text-decoration: none; 
+  color: black; 
+}
+
+button {
+  padding: 10px;
+  font-size: 5px;
+  background: white;
+  border: none;
+  border-radius: 15px;
+}
+
+.etc {
+  position : absolute; 
+  background-color: lightgrey;
+  left : 0;
+  right : 0; 
+  margin-left : auto;
+  margin-right : auto;
+  width : 400px;
+  padding: 5px 10px;
+  bottom: 80px;
+  text-align: center;
+}
