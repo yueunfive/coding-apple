@@ -1,0 +1,28 @@
+div {
+  box-sizing : border-box;
+}
+
+body {
+  margin : 0;
+}
+
+html {
+  line-height : 1.15; /*기본 행간 높이*/
+}
+
+.img {
+  width: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  background-color: skyblue;
+  border-radius: 7px;
+  box-shadow: 5px 5px black;
+}
