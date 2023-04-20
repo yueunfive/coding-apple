@@ -1,5 +1,5 @@
 td, th {
-  border: 1px solid black;
+  border-bottom: 1px solid black;
   vertical-align : middle;
   text-align: center;
   padding: 5px;
@@ -7,17 +7,31 @@ td, th {
 
 table {
   border-collapse: collapse;
+  width: 100%;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .background {
   background-color: skyblue;
   padding: 30px;
+  width: 600px;
+  height: 400px;  
+  margin: 20px auto;
 }
 
 h2 {
   color: navy;
+  font-weight: 350; 
 }
 
-img {
-  display: inline-block;
+footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.sum {
+  text-align: right;
+  border-bottom: none;
 }
