@@ -37,6 +37,10 @@ body {
   padding: 10px;
 }
 
+.form-long {
+  height: 100px;
+}
+
 button {
   padding: 10px;
   display: block;
