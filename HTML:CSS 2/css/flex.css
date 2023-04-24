@@ -1,0 +1,21 @@
+body {
+  box-sizing: border-box;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: 50px;
+  background-color: pink;
+  padding: 10px;
+  margin: auto;
+}
+
+h1, h2 {
+  color: white;
+}
+
+
+  
