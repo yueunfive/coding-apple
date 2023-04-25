@@ -1,0 +1,22 @@
+body {
+  display: flex;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.box {
+  margin: 50px;
+  text-align: center;
+}
+
+@media screen and (max-width: 992px) {
+  body {
+    display: block;
+  }
+}
