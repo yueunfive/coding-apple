@@ -1,0 +1,23 @@
+.cart-background {
+  width: 100%;
+  background: #c2d3de;
+  padding: 30px;
+}
+
+.cart-table {
+  width: 100%;
+  max-width: 700px;
+  background: white;
+  border-radius: 10px;
+  border-collapse: collapse;
+  margin: auto;
+}
+
+.cart-table td, .cart-table th {
+  border-bottom:  1px solid #c2d3de;
+  padding: 15px;
+}
+
+.cart-table th:nth-child(2) {
+  width: 400px;
+}
