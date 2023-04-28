@@ -1,0 +1,83 @@
+div {
+  box-sizing : border-box;
+}
+body {
+  margin : 0;
+  min-width: 800px;
+}
+html {
+  line-height : 1.15; /*기본 행간 높이*/
+}
+
+
+.container1 {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(skyblue, navy); 
+}
+.box1 {
+  position: relative;
+  top: 100px;
+  left: 50px;
+  color: white;
+}
+.iphone {
+  position: absolute;
+  right: 50px;
+  bottom: 0;
+  width: 250px;
+}
+button {
+  color: white;
+  background-color: dimgray;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+
+.container2 {
+  width: 100%;
+  height: 200px;
+}
+.box2 {
+  color: black;
+  text-align: center;
+  padding: 30px; 
+}
+
+
+.container3 {
+  width: 100%;
+  height: 350px;
+  background-color: cornflowerblue;
+  color: white;
+}
+.box3 {
+  text-align: center;
+  padding: 20px;
+}
+.icon-box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+.icon-box i {
+  color: cornflowerblue;
+  background-color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  padding-top: 25px;
+  box-sizing: border-box;
+}
+
+.container4 {
+  width: 100%;
+  height: 1000px;
+}
+img {
+  width: 40%;
+}
