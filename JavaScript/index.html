@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="main.css" rel="stylesheet">
+  <title>JS</title>
+</head>
+<body>
+ <!-- 1강  -->
+  <h1 id="hello">안녕하세요</h1>
+  <script> 
+    document.getElementById('hello').innerHTML = '안녕';
+    document.getElementById('hello').style.color = 'blue';
+    document.getElementById('hello').style.fontSize = '16px'; //과제
+  </script> 
+  
+  <div style="height: 100px;"></div>
+
+  <!-- 2,3강 -->
+  <div class="alert-box" id="alert">
+    알림창
+    <button onclick="closeAlert()">닫기</button> <!-- 과제 -->
+  </div>
+  <button onclick="openAlert()">열기</button>
+  <script>
+    function openAlert() {
+      document.getElementById('alert').style.display = 'block';
+    }
+    function closeAlert() {
+      document.getElementById('alert').style.display = 'none';
+    } // 과제
+  </script>
+
+</body>
+</html>
