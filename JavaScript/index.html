@@ -8,30 +8,27 @@
   <title>JS</title>
 </head>
 <body>
- <!-- 1강  -->
-  <h1 id="hello">안녕하세요</h1>
+  <h1 id="hello">hello</h1>
   <script> 
-    document.getElementById('hello').innerHTML = '안녕';
+    document.getElementById('hello').innerHTML = 'hi';
     document.getElementById('hello').style.color = 'blue';
-    document.getElementById('hello').style.fontSize = '16px'; //과제
+    document.getElementById('hello').style.fontSize = '16px'; 
   </script> 
   
   <div style="height: 100px;"></div>
 
-  <!-- 2,3강 -->
+ 
   <div class="alert-box" id="alert">
-    알림창
-    <button onclick="closeAlert()">닫기</button> <!-- 과제 -->
+    <p id="title">Alert-Box</p>
+    <button onclick="openAlert('none', 'none')">close</button> 
   </div>
-  <button onclick="openAlert()">열기</button>
+  <button onclick="openAlert('Insert ID', 'block')">bt1</button>
+  <button onclick="openAlert('Insert PW', 'block')">bt2</button>
   <script>
-    function openAlert() {
-      document.getElementById('alert').style.display = 'block';
+    function openAlert(a, b) {
+      document.getElementById('title').innerHTML = a;
+      document.getElementById('alert').style.display = b;
     }
-    function closeAlert() {
-      document.getElementById('alert').style.display = 'none';
-    } // 과제
   </script>
-
 </body>
 </html>
