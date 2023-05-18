@@ -42,6 +42,10 @@ html {
   float: left;
 }
 
+.profile-name h4, .profile-name p {
+  margin: 7px;
+}
+
 .text {
   clear: both;
   padding: 1px; 

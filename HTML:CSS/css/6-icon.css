@@ -1,3 +1,4 @@
+/* media query(반응형 레이아웃), Font Awesome */
 .container {
   display: flex;
   justify-content: space-around;
@@ -50,11 +51,14 @@
   display: block;
 }
 
+/* transition */
 .overlay-wrap {
   position: absolute;
   width: 100%;
   height: 100%;
   overflow: hidden;
+/* overflow : 박스의 폭이나 높이를 초과하는 내부요소를 처리하기 위한 속성
+   hidden : 넘치는 내부요소를 자동으로 잘라 없애준다. */
 }
 .overlay {
   width: 100%;

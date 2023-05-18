@@ -3,7 +3,6 @@ div {
 }
 body {
   margin : 0;
-
 }
 html {
   line-height : 1.15; /*기본 행간 높이*/
@@ -21,7 +20,7 @@ html {
   left: 50px;
   color: white;
 }
-.iphone {
+.top-container img {
   position: absolute;
   right: 50px;
   bottom: 0;
@@ -37,6 +36,7 @@ button {
 button:hover {
   background-color: black;
 }
+
 
 .container2 {
   text-align: center;
@@ -141,14 +141,14 @@ footer i {
     top: 50;  
     left: 0;
   }
-  .iphone {
+  .top-container img {
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* 수평 가운데 정렬 */
   }
   .st-text {
     font-size: 12px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); 
   }
 
 }

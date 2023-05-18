@@ -52,6 +52,10 @@ footer {
   margin-top: 15px;
 }
 
+footer a {
+  color: navy;
+}
+
 button {
   width: 200px;
   height: 50px;
