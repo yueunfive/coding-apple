@@ -170,3 +170,68 @@ function 작명(){
   </script>
 </body>
 ```
+
+<br>
+
+## jquery : 자바스크립트 라이브러리
+
+- 제이쿼리 셀렉터 뒤에는 제이쿼리 함수들만 붙혀야 한다.
+- $() 셀렉터는 querySelectorAll과 달리 모든 요소를 한 번에 조작하고 변경 가능 (인덱싱 필요없음)
+
+```jsx
+// jquery로 모달창 숨겼다 보여주기(버튼 클릭 -> 클래스 탈부착)
+$("#login").on("click", function () {
+  $(".black-bg").addClass("show-modal");
+});
+// document.querySelector().addEventListener("click", function(){
+//   document.querySelector().classList.add()
+// });
+$("#close").on("click", function () {
+  $(".black-bg").removeClass("show-modal");
+});
+```
+
+<br>
+
+## UI Animation - one-way 일방향 애니메이션 만드는 법 (CSS)
+
+1. 시작스타일 만들기 (class로)
+2. 최종스타일 만들기 (class로)
+3. 원할 때 최종스타일로 변하라고 JS 코드 짜기
+4. 시작스타일에 transition 추가
+
+```css
+/* 시작 스타일 */
+.black-bg {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1s; /* 시작스타일에 transition 추가 */
+}
+/* 최종 스타일 */
+.show-modal {
+  visibility: visible;
+  opacity: 1;
+}
+```
+
+<br>
+
+## if 조건문
+
+(개념은 많이 본 내용이라 따로 필기는 안 했다..)
+
+```jsx
+// 전송버튼을 눌렀을 때(이벤트리스너), input에 입력한 값이 공백이면(if 조건문) 알림창(alert('')) 띄우기
+// 과제1 : 전송버튼 누를 때 아이디랑 비밀번호 둘 다 공백검사
+// 과제2 : 전송버튼 누를 때 입력한 비밀번호 6자 미만이면 알림띄우기
+$("form").on("submit", function () {
+  if (
+    document.getElementById("idBox").value == "" &&
+    document.getElementById("pwBox").value == ""
+  ) {
+    alert("please input your ID & PW");
+  } else if (document.getElementById("pwBox").value.length < 6) {
+    alert("Your PW is too short!");
+  }
+});
+```

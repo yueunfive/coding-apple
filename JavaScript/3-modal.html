@@ -19,10 +19,10 @@
         <h4>로그인하세요</h4>
         <form action="success.html">
           <div class="my-3">
-            <input type="text" class="form-control" id="email" />
+            <input type="text" class="form-control" id="idBox" />
           </div>
           <div class="my-3">
-            <input type="password" class="form-control" />
+            <input type="password" class="form-control" id="pwBox" />
           </div>
           <button type="submit" class="btn btn-primary" id="send">전송</button>
           <button type="button" class="btn btn-danger" id="close">닫기</button>
@@ -46,11 +46,16 @@
         $(".black-bg").removeClass("show-modal");
       });
       // 전송버튼을 눌렀을 때(이벤트리스너), input에 입력한 값이 공백이면(if 조건문) 알림창(alert('')) 띄우기
+      // 과제1 : 전송버튼 누를 때 아이디랑 비밀번호 둘 다 공백검사
+      // 과제2 : 전송버튼 누를 때 입력한 비밀번호 6자 미만이면 알림띄우기
       $("form").on("submit", function () {
-        if (document.getElementById("email").value == "") {
-          alert("please input your ID");
-        } else if (document.getElementById("email").value.length < 6) {
-          alert("Your ID is too short!");
+        if (
+          document.getElementById("idBox").value == "" &&
+          document.getElementById("pwBox").value == ""
+        ) {
+          alert("please input your ID & PW");
+        } else if (document.getElementById("pwBox").value.length < 6) {
+          alert("Your PW is too short!");
         }
       });
     </script>
