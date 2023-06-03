@@ -6,3 +6,8 @@
 .show {
   display: block;
 }
+
+.dark {
+  background-color: black;
+  color: white;
+}
