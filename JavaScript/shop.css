@@ -1,3 +1,16 @@
+/* navbar */
+.list-group {
+  display: none;
+}
+.show {
+  display: block; /* css파일은 하단에 적을 수록 우선 적용 */
+}
+.dark {
+  background-color: black;
+  color: white;
+}
+
+/* modal */
 .black-bg {
   width: 100%;
   height: 100%;

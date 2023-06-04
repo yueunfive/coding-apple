@@ -21,3 +21,18 @@ function test(a, b) {
     console.log("불합격..");
   }
 }
+
+// 이자율 계산하기
+function solution() {
+  if (예금액 < 50000) {
+    미래예금액 = 예금액 * 1.15;
+  } else {
+    미래예금액 = 예금액 * 1.2;
+  }
+  return 미래예금액;
+}
+
+// 커피 리필량 계산하기
+function solution() {
+  return first + (first * 2) / 3 + (((first * 2) / 3) * 2) / 3;
+}

@@ -235,3 +235,45 @@ $("form").on("submit", function () {
   }
 });
 ```
+
+<br>
+
+## 자바스크립트 문법 vs 브라우저 사용법
+
+- 자바스크립트 문법 : 변수(var, let, const), if, function…
+- 브라우저 사용법 : document.querySelector(), addEventListener()..
+- 둘 다 밸런스있게 갖고 가야 한다.
+
+<br>
+
+## setTimeout 타이머
+
+```jsx
+// setTimeout : X초 후에 코드를 실행
+// 시간 : ms 단위 (1초 = 1000ms)
+setTimeout(function(){실행할 코드}, 시간);
+
+// 1초 후에 콘솔창에 '안녕'
+setTimeout(function(){
+  console.log('안녕')
+}, 1000);
+
+// setInterval : X초마다 코드를 실행
+setInterval(function(){실행할 코드}, 시간);
+
+// 1초 마다 콘솔창에 '안녕'
+setInterval(function(){
+  console.log('안녕')
+}, 1000);
+
+// 콜백함수 테크닉 - 다른 곳에서 만든 함수를 콜백함수로 집어넣어도 된다.
+setTimeout(함수, 1000);
+
+function 함수(){
+  console.log('안녕')
+}
+```
+
+<br>
+
+출처 : 코딩애플 'JavaScript 입문과 웹 UI개발'
