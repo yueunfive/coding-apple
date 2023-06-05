@@ -31,3 +31,22 @@
   visibility: visible; /* 애니메이션 만들 때 display: block 대용 */
   opacity: 1;
 }
+.main-bg {
+  background-color: lightgray;
+  color: black;
+  height: 300px;
+  padding: 100px 0 0 50px;
+}
+
+/* carousel */
+.slide-container {
+  width: 300vw; /* 브라우저폭 == 100vw */
+  transition: all 1s;
+}
+.slide-box {
+  width: 100vw;
+  float: left;
+}
+.slide-box img {
+  width: 100%;
+}

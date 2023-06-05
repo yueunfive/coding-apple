@@ -276,4 +276,38 @@ function 함수(){
 
 <br>
 
+## 정규식
+
+: 문자를 검사하고 싶을 때 사용하는 식 (true || false로 판별)
+
+```jsx
+// abcdef라는 문자에 abc라는 단어가 있는지 검사
+/abc/.test('abcdef') //true
+
+// [ ] : 범위 내 아무문자 하나
+/[a-d]/.test('aefg') //true
+/[가-다]/.test('다라마바') // rue
+
+// [a-zA-Z] : 아무 알파벳 하나
+/[a-zA-Z]/.test('에이요') //false
+
+// \S : 특수문자 포함 아무문자 1개
+/\S/.test('abcde') //true
+
+// ^a : a로 시작하는지 검사
+/^a/.test('abcde') //true
+
+// e$ : e로 끝나는지 검사
+/e$/.test('abcde') //ture
+
+// | : or -> e, f 중 하나라도 있으면 true
+/(e|f)/.test('abcde') //true
+
+// + : 왼쪽 문자 반복 검색
+/\S+@/ // 모든 문자 여러 개 다음 @
+
+// 이메일 정규식
+/\S+@\S+\.\S+/ // '.'은 마침표 문법을 쓰는게 아니므로 앞에 \ 붙혀야 됨.
+```
+
 출처 : 코딩애플 'JavaScript 입문과 웹 UI개발'

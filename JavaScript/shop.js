@@ -31,14 +31,23 @@ $("#close").on("click", function () {
 // 전송버튼을 눌렀을 때(이벤트리스너), input에 입력한 값이 공백이면(if 조건문) 알림창(alert('')) 띄우기
 // 과제1 : 전송버튼 누를 때 아이디랑 비밀번호 둘 다 공백검사
 // 과제2 : 전송버튼 누를 때 입력한 비밀번호 6자 미만이면 알림띄우기
-$("form").on("submit", function () {
-  if (
-    document.getElementById("idBox").value == "" &&
-    document.getElementById("pwBox").value == ""
-  ) {
-    alert("please input your ID & PW");
-  } else if (document.getElementById("pwBox").value.length < 6) {
-    alert("Your PW is too short!");
+$("form").on("submit", function (e) {
+  let inputID = document.getElementById("idBox").value;
+  let inputPW = document.getElementById("pwBox").value;
+  if (inputID == "" && inputPW == "") {
+    alert("Please input your ID & PW");
+    e.preventDefault(); // 폼 전송 막음
+  } else if (inputPW.length < 6) {
+    alert("Your PW is too sho rt");
+    e.preventDefault();
+  }
+  if (/\S+@\S+\.\S+/.test(inputID) == false) {
+    alert("Your ID is not email form");
+    e.preventDefault();
+  }
+  if (/[A-Z]/.test(inputPW) == false) {
+    alert("At least one uppercase letter is required for password");
+    e.preventDefault();
   }
 });
 
@@ -60,3 +69,25 @@ function timeOut() {
   }
 }
 setInterval(timeOut, 1000);
+
+// 캐러셀 - 버튼(1,2,3) 누르면 최종하면으로 변하게 하기
+$(".slide-1").on("click", function () {
+  $(".slide-container").css("transform", "translateX(0vw)");
+});
+$(".slide-2").on("click", function () {
+  $(".slide-container").css("transform", "translateX(-100vw)");
+  // transform: translateX(-100vw) : 왼쪽으로 100vw 이동
+  // .css() : jquery에서 style 속성 변경 가능
+});
+$(".slide-3").on("click", function () {
+  $(".slide-container").css("transform", "translateX(-200vw)");
+});
+// After 버튼 클릭하면
+// 지금 보이는 사진이 1이면 2를 보여주세요 / 2이면 3을 보여주세요.
+let presentImg = $(".slideAfter").on("click", function () {
+  if ($(".slide-container").css("transform") == "translateX(0vw)") {
+    $(".slide-container").css("transform", "translateX(-100vw)");
+  } else if ($(".slide-container").css("transform") == "translateX(-100vw)") {
+    $(".slide-container").css("transform", "translateX(-200vw)");
+  }
+});
