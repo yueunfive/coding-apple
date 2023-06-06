@@ -1,4 +1,13 @@
 /* navbar */
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+}
+.navbar-brand {
+  font-size: 30px;
+  transition: all 1s;
+}
 .list-group {
   display: none;
 }
@@ -35,7 +44,7 @@
   background-color: lightgray;
   color: black;
   height: 300px;
-  padding: 100px 0 0 50px;
+  padding: 140px 0 0 50px;
 }
 
 /* carousel */
@@ -49,4 +58,13 @@
 }
 .slide-box img {
   width: 100%;
+}
+
+/* scroll event */
+.lorem {
+  border: 1px solid black;
+  margin: 10px;
+  width: 200px;
+  height: 100px;
+  overflow-y: scroll;
 }

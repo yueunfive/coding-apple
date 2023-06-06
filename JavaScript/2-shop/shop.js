@@ -84,10 +84,63 @@ $(".slide-3").on("click", function () {
 });
 // After 버튼 클릭하면
 // 지금 보이는 사진이 1이면 2를 보여주세요 / 2이면 3을 보여주세요.
-let presentImg = $(".slideAfter").on("click", function () {
-  if ($(".slide-container").css("transform") == "translateX(0vw)") {
+let presentImg = 1;
+$(".slideAfter").on("click", function () {
+  if (presentImg == 1) {
     $(".slide-container").css("transform", "translateX(-100vw)");
-  } else if ($(".slide-container").css("transform") == "translateX(-100vw)") {
+    presentImg++;
+  } else if (presentImg == 2) {
+    presentImg++;
     $(".slide-container").css("transform", "translateX(-200vw)");
+  }
+});
+// 응용 : 확장성 - if문 필요없이 다음버튼 누르면 'translateX(-지금사진vw)'로 이동시키도록 코드 1줄만 짜면 끝!
+// $("slideAfter").on("click", function () {
+//   $(".slide-container").css("transform", "translateX(-" + presentImg + "00vw)");
+//   presentImg++;
+// });
+$(".slideBefore").on("click", function () {
+  if (presentImg == 3) {
+    $(".slide-container").css("transform", "translateX(-100vw)");
+    presentImg--;
+  } else if (presentImg == 2) {
+    $(".slide-container").css("transform", "translateX(0vw)");
+    presentImg--;
+  }
+});
+
+// scroll event
+// 스크롤바 100px 내리면 로고 폰트사이즈 작게 만들기
+window.addEventListener("scroll", function () {
+  // scrollY : 유저가 얼마나 스크롤바 내렸나
+  if (window.scrollY >= 100) {
+    $(".navbar-brand").css("fontSize", 15);
+  } else {
+    $(".navbar-brand").css("fontSize", 30);
+  }
+});
+// 박스 끝까지 스크롤시 알림띄우기
+// div 스크롤바 내린 양 + div가 화면에 보이는 높이 == div 실제높이
+$(".lorem").on("scroll", function () {
+  let 스크롤양 = document.querySelector(".lorem").scrollTop; // .scrollTop : 스크롤바를 위에서 부터 얼마나 내렸는지
+  let 실제높이 = document.querySelector(".lorem").scrollHeight; // .scrollHeight : 스크롤가능한 실제높이
+  let 박스높이 = document.querySelector(".lorem").clientHeight; // .clientHeight : 박스가 화면에 보이는 부분 높이
+  // 스크롤 내린 양이 소수 단위로 부정확하게 나와서 여유있게 비교하기
+  if (스크롤양 + 박스높이 >= 실제높이 - 10) {
+    alert("다 보셨군요:)");
+  }
+});
+
+window.scrollY; // 현재 페이지 스크롤양
+document.querySelector("html").scrollHeight; // 현재 페이지 실제높이
+document.querySelector("html").clientHeight; // 페이지 보이는 부분 높이
+
+// event bubbling
+// modal 검은배경 누르면 모달창 닫는 기능 만들기
+$(".black-bg").on("click", function (e) {
+  // 실제로 누른게 검은 배경이면 모달창 닫기
+  // e.target == $('.black-bg') 사용불가능 (그냥 뭐... 비교할때는 제이쿼리 안 쓰는게..?)
+  if (e.target == document.querySelector(".black-bg")) {
+    $(".black-bg").removeClass("show-modal");
   }
 });

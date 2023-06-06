@@ -310,4 +310,118 @@ function 함수(){
 /\S+@\S+\.\S+/ // '.'은 마침표 문법을 쓰는게 아니므로 앞에 \ 붙혀야 됨.
 ```
 
+<br>
+
+## return
+
+- function() 실행하고 나서 그 자리에 뭔가 결과를 남긴다.
+  → 자료를 집어넣으면 규칙에 따라 다른 자료가 나오는 변환기 역할(수학의 함수랑 같음!)
+- 함수 종료 - return 하단의 코드는 실행 안 된다.
+
+<br>
+
+## 소수점 연산
+
+```jsx
+console.log(1.1 + 0.3); // 1.40000000001 그냥.. 컴퓨터 문제로 오차 발생
+
+// 소수점 반올림
+// 숫자.toFixed(몇자리)
+console.log((1.1 + 0.3).toFixed(1)); // '문자'로 변환됨
+
+// '숫자'(문자) -> 숫자 변환
+parseFloat("123");
+parseInt("123");
+```
+
+<br>
+
+## scroll
+
+- 암기하지말고 이해할 것!
+  1. 스크롤바 조작할 때마다 코드실행이 가능하네~
+  2. 박스의 실제 높이 / 보이는 높이를 구할 수 있네~
+  3. 스크롤 양을 구할 수 있네~
+
+```jsx
+// 스크롤 이벤트리스너
+window.addEventListener("scroll", function () {
+  console.log("안녕");
+});
+
+// scrollY : 현재 페이지를 얼마나 위에서 부터 스크롤했는지 px 단위로 알려줌
+window.addEventListener("scroll", function () {
+  console.log(window.scrollY);
+});
+
+// jqeury ver
+// Top() : 스크롤 양 알려줌, 안에 숫자 기입하면 그만큼 페이지 강제이동 시킴
+$(window).on("scroll", function () {
+  $(window).scrollTop();
+});
+
+// 현재 페이지를 끝까지 스크롤했는지 체크하기
+// '박스 끝까지 스크롤시 알림띄우기'랑 똑같이 하면 됨
+document.querySelector("html").scrollTop; //현재 웹페이지 스크롤양(== window.scrollY)
+document.querySelector("html").scrollHeight; //현재 웹페이지 실제높이
+document.querySelector("html").clientHeight; //현재 웹페이지 보이는 높이임
+```
+
+<br>
+
+## for 반복문
+
+- 비슷한 코드를 반복실행(복붙)
+- 비슷한 코드들을 직접 복붙하는게 귀찮으니 for 반복문을 쓰는 것!  
+  → for 부터 써놓고 무슨 코드 채울지 고민하지 말자!
+
+```jsx
+for (횟수){
+  복붙할 코드
+}
+```
+
+<br>
+
+## 이벤트 버블링
+
+: 이벤트가 상위 html로 퍼지는 현상 (항상 일어남)
+
+```html
+<!-- '안녕' 클릭하면 브라우저는 p, div, 그 위 div까지 총 3번 클릭했다고 인지-->
+<div>
+  <div>
+    <p>안녕</p>
+  </div>
+</div>
+```
+
+```jsx
+// 이벤트리스너 안에서 쓰는 이벤트 함수들
+document.querySelector(".black-bg").addEventListener("click", function (e) {
+  e.target; // 실제 클릭한 요소 알려줌 (이벤트 발생한 곳)
+  e.currentTarget; // 지금 이벤트리스너가 달린 곳 알려줌 (== this)
+  e.preventDefault(); // 이벤트 기본 동작을 막아줌
+  e.stopPropagation(); // 상위요소로의 이벤트 버블링을 중단해줌
+});
+```
+
+<br>
+
+## dataset : html 안에 유저 몰래 정보를 숨겨놓기
+
+```html
+<div data-데이터이름="값"></div>
+```
+
+```jsx
+// html 요소에 숨겨놨던 데이터가 이 자리에 남는다.
+document.querySelector().dataset.데이터이름;
+
+// 이런 식으로 이벤트리스너 적게 사용할 때 내가 뭐 눌렀는지 쉽게 파악할 수도 있다.
+$(".list").click(function (e) {
+  openTab(e.target.dataset.id);
+});
+```
+
 출처 : 코딩애플 'JavaScript 입문과 웹 UI개발'

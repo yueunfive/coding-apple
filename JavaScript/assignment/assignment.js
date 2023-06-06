@@ -36,3 +36,18 @@ function solution() {
 function solution() {
   return first + (first * 2) / 3 + (((first * 2) / 3) * 2) / 3;
 }
+
+// 함수에 분과 초를 차례로 파라미터로 입력하면 ms단위로 바꿔서 뱉어주는 함수
+function msChange(a, b) {
+  return (60 * a + b) * 1000;
+}
+
+// 가격을 파라미터로 입력하면 10% 할인가를 뱉는 함수
+function discount(a, b) {
+  let sale = a * 0.9;
+  if (b == true) {
+    return sale - 1.5;
+  } else {
+    return sale;
+  }
+}
