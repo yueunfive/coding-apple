@@ -51,3 +51,51 @@ function discount(a, b) {
     return sale;
   }
 }
+
+// 출석부에 있는 자료 찾기
+let 출석부 = ["현진", "용복", "정인", "창빈"];
+
+function 이름찾기(a) {
+  for (i = 0; i < 출석부.length; i++) {
+    if (a == 출석부[i]) {
+      return "있어요";
+    }
+  }
+}
+
+// 구구단(2~9단) 결과부분만 쭉 콘솔창에 출력하기
+let a = [];
+for (i = 1; i <= 9; i++) {
+  a.push(i);
+}
+for (i = 2; i <= 9; i++) {
+  a.forEach(function (data) {
+    console.log(data * i);
+  });
+}
+
+// 위 문제는 2중 중첩 반복문 사용하면 됨
+// 반복문 쓸 때 i 말고 다른 변수 써도 됨
+// for문부터 쓰지말고 반복시키는 내용을 먼저 구성해서 안에서부터 밖으로 코드를 짜자!
+for (n = 2; n < 10; n++) {
+  for (i = 1; i < 10; i++) {
+    console.log(n * i);
+  }
+}
+
+// 평균 점수 계산기 만들기
+function calculator(a, b) {
+  let sum = 0;
+  let avg = 0;
+  for (i = 0; i < a.length; i++) {
+    sum += a[i];
+    avg = sum / a.length;
+  }
+  if (avg > b) {
+    console.log(`평균보다 ${avg - b}점이 떨어졌네요`);
+  } else if (avg < b) {
+    console.log(`평균보다 ${b - avg}점이 올랐네요`);
+  } else {
+    console.log("평균이랑 같네요. 발전이 없...읍읍");
+  }
+}

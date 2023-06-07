@@ -29,3 +29,46 @@ function openTab(a) {
   cnt.removeClass("show");
   cnt.eq(a).addClass("show");
 }
+
+//
+
+// array & object
+let car2 = {
+  name: "소나타",
+  price: [50000, 3000, 4000],
+  color: "white",
+};
+$(".card span").eq(0).html(car2["name"]);
+$(".card span").eq(1).html(car2.price[0]);
+
+//
+
+// select input(input의 값을 변경할 때 input 이벤트 발동)
+// 자바스크립트로 html 생성
+// for each, for in 반복문
+
+let pants = [26, 28, 30, 32]; // 서버에서 보낸 데이터
+let shirts = [90, 95, 100, 105];
+$(".form-select")
+  .eq(0)
+  .on("input", function () {
+    if (this.value == "셔츠") {
+      // this == e.currentTarget : 지금 이벤트리스너가 달린 곳 알려줌
+      $(".form-select").eq(1).removeClass("form-hide");
+      $(".form-select").eq(1).html("");
+      shirts.forEach(function (data) {
+        // forEach 내부 함수의 파라미터 : array 안에 있던 데이터들
+        $(".form-select").eq(1).append(`<option>${data}</option>`);
+      });
+    } else if (this.value == "바지") {
+      $(".form-select").eq(1).removeClass("form-hide");
+      $(".form-select").eq(1).html("");
+      pants.forEach((data) => {
+        // arrow function : function(){} == () => {}, 하지만 this를 함수 밖에서 가져온다는 단점이..
+        $(".form-select").eq(1).append(`<option>${data}</option>`);
+      });
+    } else {
+      $(".form-select").eq(1).html("");
+      $(".form-select").eq(1).addClass("form-hide");
+    }
+  });

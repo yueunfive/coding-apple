@@ -38,9 +38,10 @@ $("form").on("submit", function (e) {
     alert("Please input your ID & PW");
     e.preventDefault(); // 폼 전송 막음
   } else if (inputPW.length < 6) {
-    alert("Your PW is too sho rt");
+    alert("Your PW is too short");
     e.preventDefault();
   }
+  // 정규식
   if (/\S+@\S+\.\S+/.test(inputID) == false) {
     alert("Your ID is not email form");
     e.preventDefault();
@@ -59,7 +60,7 @@ function hideAlert() {
 }
 setTimeout(hideAlert, 5000); // 콜백함수 자리에 만들어둔 함수 넣을 수 있음
 
-// x초 마다 코드실행
+// x초마다 코드실행
 // 1초마다 5라는 문자를 1씩 감소
 let count = 5;
 function timeOut() {
@@ -95,6 +96,7 @@ $(".slideAfter").on("click", function () {
   }
 });
 // 응용 : 확장성 - if문 필요없이 다음버튼 누르면 'translateX(-지금사진vw)'로 이동시키도록 코드 1줄만 짜면 끝!
+// 이 부분 안된다.. 나중에 집중적으로 보자
 // $("slideAfter").on("click", function () {
 //   $(".slide-container").css("transform", "translateX(-" + presentImg + "00vw)");
 //   presentImg++;

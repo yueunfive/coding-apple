@@ -286,7 +286,7 @@ function 함수(){
 
 // [ ] : 범위 내 아무문자 하나
 /[a-d]/.test('aefg') //true
-/[가-다]/.test('다라마바') // rue
+/[가-다]/.test('다라마바') //true
 
 // [a-zA-Z] : 아무 알파벳 하나
 /[a-zA-Z]/.test('에이요') //false
@@ -314,7 +314,7 @@ function 함수(){
 
 ## return
 
-- function() 실행하고 나서 그 자리에 뭔가 결과를 남긴다.
+- function() 실행하고 나서 그 자리에 뭔가 결과를 남긴다.  
   → 자료를 집어넣으면 규칙에 따라 다른 자료가 나오는 변환기 역할(수학의 함수랑 같음!)
 - 함수 종료 - return 하단의 코드는 실행 안 된다.
 
@@ -339,9 +339,9 @@ parseInt("123");
 ## scroll
 
 - 암기하지말고 이해할 것!
-  1. 스크롤바 조작할 때마다 코드실행이 가능하네~
-  2. 박스의 실제 높이 / 보이는 높이를 구할 수 있네~
-  3. 스크롤 양을 구할 수 있네~
+  1. 스크롤바 조작할 때마다 코드실행이 가능하구나!
+  2. 박스의 실제 높이 / 보이는 높이를 구할 수 있구나!
+  3. 스크롤 양을 구할 수 있구나!
 
 ```jsx
 // 스크롤 이벤트리스너
@@ -400,7 +400,7 @@ for (횟수){
 // 이벤트리스너 안에서 쓰는 이벤트 함수들
 document.querySelector(".black-bg").addEventListener("click", function (e) {
   e.target; // 실제 클릭한 요소 알려줌 (이벤트 발생한 곳)
-  e.currentTarget; // 지금 이벤트리스너가 달린 곳 알려줌 (== this)
+  e.currentTarget; // 지금 이벤트리스너가 달린 곳 알려줌 (== this), 위 코드에서는 .black-bg
   e.preventDefault(); // 이벤트 기본 동작을 막아줌
   e.stopPropagation(); // 상위요소로의 이벤트 버블링을 중단해줌
 });
@@ -422,6 +422,233 @@ document.querySelector().dataset.데이터이름;
 $(".list").click(function (e) {
   openTab(e.target.dataset.id);
 });
+```
+
+<br>
+
+## array
+
+- [대괄호]
+- 여러가지 자료를 한곳에 저장하고 싶을 때 사용하는 자료형
+- 순서 개념 ㅇ : 가나다순 정렬(sort), n번부터 n번까지 자르기(slice) 등 이것저것 할 수 있음
+
+```jsx
+var car = ["소나타", 50000, "white"];
+console.log(car[1]); // 자료 출력 : []
+car[1] = 60000; // 자료 수정 or 추가 : =
+```
+
+<br>
+
+## object
+
+- {중괄호}
+- 여러가지 자료를 한곳에 저장하고 싶을 때 사용하는 자료형
+- 값마다 키 이름 정해짐
+
+```jsx
+var car2 = {
+  name: "소나타", // key: value
+  price: 50000,
+};
+
+// 자료 출력 : [] or .
+console.log(car2["name"]);
+console.log(car2.name);
+
+// 수정 or 추가 : =
+car2["name"] = "그랜저";
+```
+
+<br>
+
+## array & object 데이터 바인딩
+
+```jsx
+// object/array 안에 또 다른 array/object 넣어도 상관없다.
+let car2 = {
+  name: "소나타",
+  price: [50000, 3000, 4000],
+  color: "white",
+};
+$(".card span").eq(0).html(car2["name"]);
+$(".card span").eq(1).html(car2.price[0]);
+
+// 복합한 데이터에서 자료 꺼내려면 console.log()로 자료출력 후 '시작기호'에 집중!
+// 시작기호 : '{' 중괄호 -> object 자료형
+// 시작기호 : '[' 대괄호 -> array 자료형
+
+// 문자 중간에 변수 쉽게 넣기
+let 변수 = "안녕";
+console.log(`문자${변수}문자`); // 백틱
+```
+
+<br>
+
+## select
+
+- input이랑 똑같음.
+- 사용자가 고를 수 있는 선택지를 드랍다운 메뉴로 제공하는 `<input>`
+- 선택지는 `<option>`으로 넣으면 됨.
+- `<select>` 태그 선택 시 input, change 이벤트 발생
+  - input event : `<input>`에 입력된 값이 변경될 때(한 글자 칠 때 마다) 즉시 발생
+  - change event : `<input>`에 입력된 값이 변경된 후 커서가 다른 곳으로 이동했을 때 발생
+- .value로 유저가 입력한 값을 가져올 수 있다.
+
+```html
+<form class="container my-5 form-group">
+  <p>상품선택</p>
+  <select class="form-select mt-2">
+    <option>모자</option>
+    <option>셔츠</option>
+  </select>
+  <select class="form-select mt-2 form-hide">
+    <option>90</option>
+    <option>95</option>
+    <option>100</option>
+  </select>
+</form>
+```
+
+```jsx
+$(".form-select")
+  .eq(0)
+  .on("input", function () {
+    if (this.value == "셔츠") {
+      // this == e.currentTarget : 지금 이벤트리스너가 달린 곳 알려줌
+      $(".form-select").eq(1).removeClass("form-hide");
+    }
+  });
+```
+
+<br>
+
+## 자바스크립트로 html 생성
+
+- `<select>` → 서버에서 보낸 데이터 갯수 만큼 `<option>` 태그 생성
+
+```html
+<!-- html 생성하는 법 1 -->
+<div id="test"></div>
+
+<script>
+  var a = document.createElement("p"); // createElement() : html 자료 생성
+  a.innerHTML = "안녕";
+  document.querySelector("#test").appendChild(a); // appendChild() : html 삽입
+</script>
+
+<!-- html 생성하는 법 2 -->
+<div id="test"></div>
+
+<script>
+  var a = "<p>안녕</p>"; // 문자자료로 html 생성
+  document.querySelector("#test").insertAdjacentHTML("beforeend", a);
+  // == $('#test').append(a);
+  // beforend : 안쪽 맨 밑에 추가
+  // 웬만하면 2번 방법으로 쓰기
+</script>
+```
+
+```jsx
+// select input
+// 셔츠를 고른다면, 밑의 <select> 보여주기
+// input의 값을 변경할 때 input 이벤트 발동
+// this == e.currentTarget : 지금 이벤트리스너가 달린 곳 알려줌
+$(".form-select")
+  .eq(0)
+  .on("input", function () {
+    if (this.value == "셔츠") {
+      $(".form-select").eq(1).removeClass("form-hide");
+      $(".form-select").eq(1).html("");
+      let shirtsSize = `<option>S</option>
+      <option>M</option>
+      <option>L</option>`;
+      $(".form-select").eq(1).append(shirtsSize);
+    }
+    // 자바스크립트로 html 생성
+    // 바지 옵션 누르면 28과 30 사이즈 담긴 <select> 띄우기
+    else if (this.value == "바지") {
+      $(".form-select").eq(1).removeClass("form-hide");
+      $(".form-select").eq(1).html("");
+      let pantsSize = `<option>28</option>
+      <option>30</option>`; // 백틱으로 하면 태그 사이 enter 가능!(그냥 따옴표 쓰고 enter 안해도 되긴 함)
+      $(".form-select").eq(1).append(pantsSize);
+    } else {
+      $(".form-select").eq(1).addClass("form-hide");
+    }
+  });
+```
+
+<br>
+
+## forEach 반복문
+
+: 배열 안의 데이터 갯수만큼 forEach 콜백함수 안에 있는 코드가 실행
+
+```jsx
+let pants = [28, 30, 32];
+
+pants.forEach(function () {
+  console.log("안녕");
+}); // "안녕" 3번 출력됨
+
+// forEach 내부 함수의 파라미터 : array 안에 있던 데이터들
+shirts.forEach(function (data) {
+  $(".form-select").eq(1).append(`<option>${data}</option>`);
+});
+
+// forEach 콜백함수 안에 파라미터 2개까지 작명 가능(1개만 써도 됨)
+// 첫째 파라미터 : array 안에 있던 하나하나의 데이터
+// 둘째 파라미터 : 0부터 1씩 증가하는 정수
+let pants = [28, 30, 32];
+pants.forEach(function (a, i) {
+  console.log(i);
+});
+```
+
+<br>
+
+## for in 반복문
+
+: object 자료 갯수만큼 반복문을 돌리고 싶을 때 사용
+
+```jsx
+let obj = { name: "yueun", age: 22 };
+
+// 여기 써있는 key는 작명한 변수이며, 반복문이 돌 때마다 object자료 안에 있던 key값이 된다.
+for (var key in obj) {
+  console.log("안녕"); // "안녕" 2회 출력됨
+  console.log(key); // name, age (key값 따로 출력)
+  console.log(obj[key]); // yueun, 22 (value값 따로 출력)
+}
+
+// 반복문의 용도
+// 1.코드 복붙(반복 실행)하고 싶을 때
+// 2.array, object 자료 다 꺼내고 싶을 때
+```
+
+<br>
+
+## arrow function
+
+```jsx
+var pants = [28, 30, 32];
+
+pants.forEach(function (a) {
+  console.log(a);
+});
+
+pants.forEach((a) => {
+  console.log(a);
+});
+
+// 파라미터가 하나면 () 소괄호 생략 가능
+pants.forEach((a) => {
+  console.log(a);
+});
+
+// 함수 중괄호 안에 return 한 줄 밖에 없으면 { } 중괄호와 return 동시에 생략 가능
+// 함수 안에서 this를 재정의하지 않고 바깥에 있에서 그대로 가져온다.(이벤트리스너 안에서는 안 쓰는게 좋을 듯)
 ```
 
 출처 : 코딩애플 'JavaScript 입문과 웹 UI개발'
