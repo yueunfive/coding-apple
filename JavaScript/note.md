@@ -651,4 +651,111 @@ pants.forEach((a) => {
 // 함수 안에서 this를 재정의하지 않고 바깥에 있에서 그대로 가져온다.(이벤트리스너 안에서는 안 쓰는게 좋을 듯)
 ```
 
+<br>
+
+## Ajax
+
+- 서버 : 데이터를 달라고 요청하면 데이터를 보내주는 간단한 프로그램
+  - 데이터 요청시 어떤 데이터인지(url 기재), 어떤 방법으로 요청할지(GET/POST 등) 결정
+  - GET 요청 : 서버에 있던 데이터를 읽고 싶을 때 사용
+  - POST 요청 : 서버로 데이터를 보내고 싶을 때 사용
+  - GET, POST 요청을 그냥 날리면 브라우저가 새로고침되는 단점이 있다.
+- Ajax : 서버에 GET, POST 요청을 할 때 새로고침 없이 데이터를 주고받을 수 있게 도와주는 간단한 브라우저 기능 (ex. 더보기로 새로고침 없이 쇼핑물 상품 더 가져오기)
+
+```jsx
+// jQuery로 AJAX 요청하기
+
+// get 요청
+// ajax 요청 성공시 .done 안에 있는 코드 실행
+// ajax 요청 실패시 .fail 안에 있는 코드 실행
+$.get("https://codingapple1.github.io/price.json")
+  .done(function (data) {
+    // 가져온 데이터 -> 파라미터
+    console.log(data);
+  })
+  .fail(function () {
+    console.log("실패함");
+  });
+
+// post 요청
+// url, 서버로 보낼 데이터
+$.post("url~~", { name: "kim" });
+```
+
+<br>
+
+## sort
+
+: sort : array 정렬
+
+- sort 함수 작동원리 - arr.sort(function(a,b) {…
+  - a, b는 array안에 있던 자료들이다.
+  - return 우측이 양수면 a를 우측으로 보낸다.
+  - return 우측이 음수면 b를 우측으로 보낸다.
+  - array 안의 자료를 다 끌고와서 a, b에 계속 넣어본다,.
+
+```jsx
+let arr = [3, 5, 1, 8, 6];
+arr.sort(); // 문자 정렬(가나다순)
+
+// 숫자 정렬(오름차순)
+arr.sort(function (a, b) {
+  return a - b;
+});
+
+// 숫자 정렬(내림차순)
+arr.sort(function (a, b) {
+  return b - a;
+});
+
+// 객체로 구성된 배열 정렬하기(price 순으로 정렬)
+var products = [
+  { id: 0, price: 70000, title: "Blossom Dress" },
+  { id: 1, price: 50000, title: "Springfield Shirt" },
+  { id: 2, price: 60000, title: "Black Monastery" },
+];
+
+products.sort(function (a, b) {
+  return a.price - b.price;
+});
+```
+
+<br>
+
+## filter
+
+: array 자료에서 원하는 자료만 필터링
+
+1. a : array 안의 데이터
+2. return 우측에 조건식을 넣으면 그에 맞는 a만 남긴다.
+3. filter는 원본을 변형시키지 않기에 새로운 변수에 담아서 사용해야 한다.(sort는 원본 변형ㅇ)
+
+```jsx
+var arr = [2, 3, 12, 7, 40];
+
+var newarr = arr.filter(function (a) {
+  return a < 4; // 조건식
+});
+// [2, 3]
+```
+
+<br>
+
+## map
+
+: array 안의 자료들을 전부 변형
+
+- a : array 안의 데이터
+- return 우측에 변경될 수식 등을 삽입
+- 원본 변형 X → 새로운 변수에 담아서 사용한다.
+
+```jsx
+var arr = [2, 3, 12, 7, 40];
+
+var newarr = arr.map(function (a) {
+  return a * 4; // 수식
+});
+// [8, 12, 48, 28, 160]
+```
+
 출처 : 코딩애플 'JavaScript 입문과 웹 UI개발'
