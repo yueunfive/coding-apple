@@ -4,13 +4,14 @@ import { useState } from "react";
 
 function App() {
   let post = "동작구 파전 맛집"; // 서버에서 가져온 데이터
-  let [title, titleChange] = useState([
+  let [title, setTitle] = useState([
     "남자 코트 추천",
     "강남 우동 맛집",
     "리액트 독학",
   ]);
+  let [num, setNum] = useState(0);
   let [thumb, setThumb] = useState([0, 0, 0]); // 두 번째 변수 : state 변경용 함수
-  let [modal, setModal] = useState(false);
+  let [modal, setModal] = useState([false]);
 
   return (
     <div className="App">
@@ -22,7 +23,7 @@ function App() {
       <button
         onClick={() => {
           let copy = [...title].sort();
-          titleChange(copy);
+          setTitle(copy);
         }}
       >
         가나다순 정렬
@@ -32,7 +33,7 @@ function App() {
           {title[0]}
           <span
             onClick={() => {
-              thumbChange(thumb + 1);
+              setThumb(thumb + 1);
             }}
           >
             {" "}
@@ -45,7 +46,7 @@ function App() {
               // array 자료변경시 다른 변수 만들어서 카피본 생성(원본 보존)
               // ... : 괄호 벗기기 -> [...변수] : 독립적인 array 복사본 생성
               copy[0] = "여자 코트 추천";
-              titleChange(copy);
+              setTitle(copy);
             }}
           >
             👩
@@ -66,8 +67,10 @@ function App() {
         <p>2월 17일 발행</p>
       </div>
       {
-        modal == true ? <Modal /> : null // 삼항연산자 : 조건식 ? true : false
-      } 
+        modal == true ? (
+          <Modal color="skyblue" title={title} setTitle={setTitle} />
+        ) : null // 삼항연산자 : 조건식 ? true : false
+      }
       <div className="list">
         <h4>{title[2]}</h4>
         <p>2월 17일 발행</p>
@@ -77,7 +80,7 @@ function App() {
       {title.map(function (a, i) {
         return (
           <div className="list">
-            <h4>
+            <h4 onClick={() => setModal(true)}>
               {a}{" "}
               {/* 좋아요 버튼을 누를 때 마다 각각 개별적으로 증가되게 하기 */}
               <span
@@ -96,17 +99,31 @@ function App() {
           </div>
         );
       })}
+      {
+        modal == true ? (
+          <Modal color="skyblue" title={title} setTitle={setTitle} />
+        ) : null // 삼항연산자 : 조건식 ? true : false
+      }
     </div>
   );
 }
 
 // 컴포넌트 만드는 법
-function Modal() {
+function Modal(props) {
   return (
-    <div className="modal">
-      <h4>제목</h4>
+    <div className="modal" style={{ background: props.color }}>
+      <h4>{props.title[0]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button
+        onClick={() => {
+          let copy = [...props.title];
+          copy[0] = "여자 코트 추천";
+          props.setTitle(copy);
+        }}
+      >
+        👩
+      </button>
     </div>
   );
 }
