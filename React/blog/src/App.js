@@ -12,6 +12,7 @@ function App() {
   let [num, setNum] = useState(0);
   let [thumb, setThumb] = useState([0, 0, 0]); // 두 번째 변수 : state 변경용 함수
   let [modal, setModal] = useState([false]);
+  let [input, setInput] = useState("");
 
   return (
     <div className="App">
@@ -28,63 +29,22 @@ function App() {
       >
         가나다순 정렬
       </button>
-      {/* <div className="list">
-        <h4>
-          {title[0]}
-          <span
-            onClick={() => {
-              setThumb(thumb + 1);
-            }}
-          >
-            {" "}
-            👍
-          </span>{" "}
-          {thumb}{" "}
-          <button
-            onClick={() => {
-              let copy = [...title];
-              // array 자료변경시 다른 변수 만들어서 카피본 생성(원본 보존)
-              // ... : 괄호 벗기기 -> [...변수] : 독립적인 array 복사본 생성
-              copy[0] = "여자 코트 추천";
-              setTitle(copy);
-            }}
-          >
-            👩
-          </button>
-        </h4>
-        <p>2월 17일 발행</p>
-      </div>
-      <div className="list">
-        <h4
-          onClick={() => {
-            if (modal == false) {
-              setModal(true);
-            } else setModal(false);
-          }}
-        >
-          {title[1]}
-        </h4>
-        <p>2월 17일 발행</p>
-      </div>
-      {
-        modal == true ? (
-          <Modal color="skyblue" title={title} setTitle={setTitle} />
-        ) : null // 삼항연산자 : 조건식 ? true : false
-      }
-      <div className="list">
-        <h4>{title[2]}</h4>
-        <p>2월 17일 발행</p>
-      </div> */}
-
       {/* map()으로 반복되는 <div> 줄이기 */}
       {title.map(function (a, i) {
         return (
           <div className="list">
-            <h4 onClick={() => setModal(true)}>
-              {a}{" "}
+            <h4
+              onClick={() => {
+                setModal(true);
+                setNum(i);
+              }}
+            >
+              {a}
+              {/* == title[i] */}{" "}
               {/* 좋아요 버튼을 누를 때 마다 각각 개별적으로 증가되게 하기 */}
               <span
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation(); // 상위 html로 퍼지는 이벤트버블링 막기
                   let copy = [...thumb];
                   copy[i]++;
                   setThumb(copy);
@@ -94,16 +54,41 @@ function App() {
               </span>
               {thumb[i]}
             </h4>
-            {/* == title[i] */}
             <p>2월 18일 발행</p>
+            {/* 글마다 삭제 버튼 기능 */}
+            <button
+              onClick={() => {
+                let copy = [...title];
+                copy.splice(i, 1); // 배열 a번째 항목부터 b개 제거
+                setTitle(copy);
+              }}
+            >
+              삭제
+            </button>
           </div>
         );
       })}
       {
         modal == true ? (
-          <Modal color="skyblue" title={title} setTitle={setTitle} />
+          <Modal color="skyblue" title={title} setTitle={setTitle} num={num} />
         ) : null // 삼항연산자 : 조건식 ? true : false
       }
+      {/* state로 사용자가 input에 입력한 데이터 저장하기 */}
+      <input
+        onChange={(e) => {
+          setInput(e.target.value);
+        }}
+      />
+      {/* 글발행기능 */}
+      <button
+        onClick={() => {
+          let copy = [...title];
+          copy.unshift(input); // unshift : 배열 맨 앞에 요소 추가
+          setTitle(copy);
+        }}
+      >
+        글 발행
+      </button>
     </div>
   );
 }
@@ -112,7 +97,7 @@ function App() {
 function Modal(props) {
   return (
     <div className="modal" style={{ background: props.color }}>
-      <h4>{props.title[0]}</h4>
+      <h4>{props.title[props.num]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
       <button
