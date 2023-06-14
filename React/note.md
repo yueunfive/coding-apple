@@ -341,4 +341,126 @@ import { name1, name2 } from "./data.js";
 // export 했던 변수명 그대로 적기.
 ```
 
+<br>
+
+## 리액트 라우터
+
+- 리액트는 html 파일을 하나만 사용
+- 다른 페이지 요청하면 그냥 내부에 있는 <div>를 갈아치워서 보여줌
+- react-router-dom(라이브러리) 설치해서 구현하는게 일반적임
+
+```jsx
+// 페이지 이동 버튼
+<Link to="/">홈</Link>
+<Link to="/detail">상세페이지</Link>
+
+// Route : 페이지라고 보면 됨
+<Routes>
+	<Route path="/" element={ <div>메인페이지</div> } />
+	<Route path="/about" element={ <div>어바웃페이지임</div> } />
+</Routes>
+
+// useNavigate() : 페이지 이동 기능
+// Link는 못생겨서 이거 쓰는게 나음
+// navigate(-n) : 뒤로 n번 가기, navigate(n) : 앞으로 n번 가기
+function App(){
+  let navigate = useNavigate() // 변수 선언 필요
+
+  return (
+	...
+    <button onClick={()=>{ navigate('/detail') }}>Detail</button>
+  )
+}
+
+// nested routes : 서브 경로
+// /about/member & /about/location
+<Route path="/about" element={ <About/> } >
+  <Route path="member" element={ <div>member</div> } />
+  <Route path="location" element={ <div>location</div> } />
+</Route>
+// Outlet : nested routes안의 element들을 어디에 보여줄지 표기하는 곳
+function About(){
+  return (
+    <div>
+      <h4>about페이지임</h4>
+      <Outlet></Outlet>
+    </div>
+  )
+}
+
+// URL 파라미터로 상세페이지 100개 만들기
+<Route path="/detail/:id" element={ <Detail shoes={shoes}/> }/>
+// ':id' : 아무문자, id도 그냥 작명한 것
+// 주소창에 /detail/아무거나 입력시 컴포넌트 보여줌
+// 실전예제는 DetailPage.js 참고..
+```
+
+<br>
+
+## useEffect
+
+- 컴포넌트 장착(mount), 업데이트(update), 제거(unmount)시 코드 실행 가능
+- useEffect 안에 적은 코드는 html 렌더링 이후에 동작한다.
+  → 반복 연산, 서버에서 데이터 가져오는 작업, 타이머 등 복잡하거나 쓸데없는 기능들을 useEffect 안에 적어서 실행 순서를 뒤로 미루면 속도가 빨라진다.
+
+```jsx
+import {useState, useEffect} from 'react';
+
+function Detail(){
+	let [count, setCount] = useState(0);
+  let [alert, setAlert] = useState(true);
+
+	useEffect(() => {
+	  //여기적은 코드는 컴포넌트 로드 & 업데이트 마다 실행됨
+	  let a = setTimeout(() => {
+	    setAlert(false);
+	  }, 2000);
+	  return () => {
+	    clearTimeout(a); // 기존 타이머 제거 (청소용)
+	  };
+	}, []);
+
+
+  return (
+		{alert == true ? (
+	     <div className="alert alert-warning">2초 이내 구매시 할인</div>
+      ) : null}
+    {count}
+		<button onClick={()=>{ setCount(count+1) }}>버튼</button>)
+}
+```
+
+```jsx
+// 1.재렌더링마다 코드 실행가능
+useEffect(() => {
+  실행할코드;
+});
+
+// 2.컴포넌트 mount시 (로드시) 1회만 실행가능
+useEffect(() => {
+  실행할코드;
+}, []);
+
+// 3.useEffect 안의 코드 실행 전에 항상 실행
+useEffect(() => {
+  return () => {
+    실행할코드;
+  };
+});
+
+// 4.컴포넌트 unmount시 1회 실행
+useEffect(() => {
+  return () => {
+    실행할코드;
+  };
+}, []);
+
+// 5.state1(작명)이 변경될 때만 실행
+useEffect(() => {
+  실행할코드;
+}, [state1]);
+```
+
+**문법 배우는게 중요한게 아니라 언제 어떻게 사용할지 생각해보는게 훨씬 중요하다!**
+
 출처 : 코딩애플 'React 리액트 기초부터 쇼핑몰 프로젝트까지!'
