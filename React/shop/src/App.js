@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 
 function App() {
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
 
   return (
@@ -43,7 +43,7 @@ function App() {
       </Navbar>
 
       <Routes>
-        <Route path="/" element={<Main shoes={shoes} />} />
+        <Route path="/" element={<Main shoes={shoes} setShoes={setShoes} />} />
         <Route path="/detail/:id" element={<DetailPage shoes={shoes} />} />
         <Route path="/event" element={<Event />}>
           <Route path="service" element={<div>첫 주문 양배추즙 서비스</div>} />

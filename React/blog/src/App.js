@@ -1,16 +1,15 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
 
 function App() {
-  let post = "동작구 파전 맛집"; // 서버에서 가져온 데이터
+  let post = "동작구 파전 맛집"; // 서버에서 가져온 데이터(라고 치자..)
   let [title, setTitle] = useState([
     "남자 코트 추천",
     "강남 우동 맛집",
     "리액트 독학",
   ]);
   let [num, setNum] = useState(0);
-  let [thumb, setThumb] = useState([0, 0, 0]); // 두 번째 변수 : state 변경용 함수
+  let [thumb, setThumb] = useState([0, 0, 0]); // 두 번째 변수(set~~) : state 변경용 함수
   let [modal, setModal] = useState([false]);
   let [input, setInput] = useState("");
 

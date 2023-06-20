@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import styles from "./DetailPage.module.css";
 
 export default function DetailPage(props) {
-  let { id } = useParams(); // 유저가 입력한 url파라미터 가져옴
+  let { id } = useParams(); // 유저가 입력한 url파라미터 가져옴 => http://localhost:3000/detail/"1"
   let [count, setCount] = useState(0);
   let [timer, setTimer] = useState(true);
   let [num, setNum] = useState("");

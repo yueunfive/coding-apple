@@ -346,7 +346,7 @@ import { name1, name2 } from "./data.js";
 ## 리액트 라우터
 
 - 리액트는 html 파일을 하나만 사용
-- 다른 페이지 요청하면 그냥 내부에 있는 <div>를 갈아치워서 보여줌
+- 다른 페이지 요청하면 그냥 내부에 있는 `<div>`를 갈아치워서 보여줌
 - react-router-dom(라이브러리) 설치해서 구현하는게 일반적임
 
 ```jsx
@@ -407,7 +407,6 @@ function About(){
 import {useState, useEffect} from 'react';
 
 function Detail(){
-	let [count, setCount] = useState(0);
   let [alert, setAlert] = useState(true);
 
 	useEffect(() => {
@@ -424,9 +423,7 @@ function Detail(){
   return (
 		{alert == true ? (
 	     <div className="alert alert-warning">2초 이내 구매시 할인</div>
-      ) : null}
-    {count}
-		<button onClick={()=>{ setCount(count+1) }}>버튼</button>)
+      ) : null})
 }
 ```
 
