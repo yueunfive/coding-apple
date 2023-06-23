@@ -4,7 +4,7 @@ import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import Main from "./components/Main";
 import DetailPage from "./components/DetailPage";
 import data from "./data.js";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 
 function App() {

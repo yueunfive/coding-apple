@@ -458,6 +458,131 @@ useEffect(() => {
 }, [state1]);
 ```
 
+<br>
+
+## AJAX
+
+- 서버에 GET, POST 요청을 할 때 새로고침 없이 데이터를 주고받을 수 있게 도와주는 간단한 브라우저 기능
+- GET, POST 요청 방법 : fetch(자바스크립트 문법), axios(외부 라이브러리) 등
+  → axios가 제일 편해서 보편적으로 사용
+
+```jsx
+import axios from 'axios'
+
+function App(){
+  return (
+    <button onClick={()=>{
+      axios.get('..url..')
+			.then((결과)=>{
+        console.log(결과.data)
+      })
+      .catch(()=>{ // 실패했을 때 실행할 코드
+        console.log('실패함')
+      })
+    }}>버튼</button>
+  )
+}
+
+// post 요청하는 법
+axios.post('URL', {name : 'yueun'})
+.then...
+
+// 동시에 AJAX 요청 여러개 날리기
+Promise.all( [axios.get('URL1'), axios.get('URL2')] )
+.then...
+```
+
+<br>
+
+## 탭 UI 만들기
+
+1. html css로 디자인 미리 완성하기
+2. UI의 현재 상태를 저장할 state 하나 만들기
+3. state에 따라서 UI가 어떻게 보일지 작성하기
+
+```jsx
+// step 2
+let [tab, setTab] = useState(0);
+..
+
+// step 1(부트스트랩 활용)
+<Nav variant="tabs"  defaultActiveKey="link0">
+    <Nav.Item>
+      <Nav.Link
+				onClick={() => {setTab(0)}}
+				eventKey="link0">버튼0
+			</Nav.Link>
+    </Nav.Item>
+    <Nav.Item>
+      <Nav.Link eventKey="link1">버튼1</Nav.Link>
+    </Nav.Item>
+    <Nav.Item>
+      <Nav.Link eventKey="link2">버튼2</Nav.Link>
+    </Nav.Item>
+</Nav>
+<TabContent tab={tab} />
+...
+
+// step 3
+function TabContent(props) {
+  if (props.tab === 0) {
+    return <div>내용0</div>;
+  }
+  if (props.tab === 1) {
+    return <div>내용1</div>;
+  }
+  if (props.tab === 2) {
+    return <div>내용2</div>;
+  }
+}
+```
+
+<br>
+
+## 컴포넌트 전환 애니메이션(transition)
+
+1. 애니메이션 동작 전 스타일을 담을 className 만들기
+2. 애니메이션 동작 후 스타일을 담을 className 만들기
+3. transition 속성도 추가
+4. 원할 때 2번 탈부착
+
+```css
+.start {
+  opacity: 0;
+}
+.end {
+  opacity: 1;
+  transition: all 0.5s;
+}
+/* 원하는 <div> 요소에 start 넣어두고 end 탈부착할 때 마다 fade in 된다. */
+```
+
+```jsx
+// "버튼을 누를 때 마다 end를 저기 부착해주세요"
+// -> "tab이라는 state가 변할 때 end를 저기 (떼었다)부착해주세요"
+// useEffect : 특정 state 아니면 props가 변할 때 마다 코드실행이 가능
+
+function TabContent({ tab }) {
+  let [fade, setFade] = useState("");
+
+  useEffect(() => {
+    setTImeout(() => {
+      setFade("end");
+    }, 100); // 타이머로 시간차 둬야됨
+    return () => {
+      // useEffect 실행 전에 실행
+      setFade("");
+    };
+  }, [tab]); // tab이 변할 때 useEffect 안의 함수 실행
+
+  return (
+    <div className={"start " + fade}>
+      {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]}
+    </div>
+  );
+}
+```
+
 **문법 배우는게 중요한게 아니라 언제 어떻게 사용할지 생각해보는게 훨씬 중요하다!**
 
 출처 : 코딩애플 'React 리액트 기초부터 쇼핑몰 프로젝트까지!'
