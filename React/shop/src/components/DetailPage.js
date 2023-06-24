@@ -26,7 +26,9 @@ export default function DetailPage(props) {
     }
   }, [num]);
   useEffect(() => {
-    setFade2("end");
+    setTimeout(() => {
+      setFade2("end");
+    }, 100);
     return () => {
       setFade2("");
     };

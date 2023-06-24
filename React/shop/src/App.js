@@ -6,6 +6,7 @@ import DetailPage from "./components/DetailPage";
 import data from "./data.js";
 import React, { useEffect, useState, createContext } from "react";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
+import Cart from "./Cart";
 
 function App() {
   let [shoes, setShoes] = useState(data);
@@ -38,6 +39,13 @@ function App() {
             >
               Event
             </Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                navigate("/cart");
+              }}
+            >
+              Cart
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -49,6 +57,7 @@ function App() {
           <Route path="service" element={<div>첫 주문 양배추즙 서비스</div>} />
           <Route path="coupon" element={<div>생일기념 쿠폰받기</div>} />
         </Route>
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );
