@@ -1,16 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-
-let user = createSlice({
-  name: "user",
-  initialState: "OH",
-  reducers: {
-    changeName(state) {
-      return "Yueun " + state;
-    },
-  },
-});
-
-export let { changeName } = user.actions;
+import user from "./store/userSlice";
 
 let cart = createSlice({
   name: "cart",
@@ -18,7 +7,16 @@ let cart = createSlice({
     { id: 0, name: "White and Black", count: 2 },
     { id: 2, name: "Grey Yordan", count: 1 },
   ],
+  reducers: {
+    addCount(state, action) {
+      const findId = state.find((item) => item.id === action.payload);
+      // find() : 배열의 특정 값을 찾는 메소드
+      findId.count += 1;
+    },
+  },
 });
+
+export let { addCount } = cart.actions;
 
 export default configureStore({
   reducer: {

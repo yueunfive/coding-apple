@@ -687,6 +687,87 @@ let dispatch = useDispatch()
 }}>+</button>
 ```
 
+### state가 object/array일 경우 변경하는 법
+
+→ state 직접 수정하기
+
+```jsx
+let user = createSlice({
+  name: "user",
+  initialState: { name: "kim", age: 20 },
+  reducers: {
+    changeName(state) {
+      state.name = "park"; // return {name : 'park', age : 20}
+    },
+  },
+});
+```
+
+### state 변경함수가 여러개 필요하면
+
+→ 파라미터 문법 사용
+
+```jsx
+let user = createSlice({
+  name: "user",
+  initialState: { name: "kim", age: 20 },
+  reducers: {
+    increase(state, a) {
+      state.age += a.payload;
+    },
+  },
+});
+
+// increase(10) : +10, increase(100) : +100
+// 'action'으로 보통 작명 + .payload 붙혀야 됨
+```
+
+### 과제 1
+
+: + 버튼을 누르면 해당 상품의 수량부분이 +1 되는 기능
+
+```jsx
+store.js;
+
+let cart = createSlice({
+  name: "cart",
+  initialState: [
+    { id: 0, name: "White and Black", count: 2 },
+    { id: 2, name: "Grey Yordan", count: 1 },
+  ],
+  reducers: {
+    addCount(state, action) {
+      const findId = state.find((item) => item.id === action.payload);
+      // find() : 배열의 특정 값을 찾는 메소드
+      findId.count += 1;
+    },
+  },
+});
+```
+
+```jsx
+(Cart.js)
+
+<tbody>
+  {state.cart.map((a, i) => (
+    <tr>
+      <td>{state.cart[i].id}</td>
+      <td>{state.cart[i].name}</td>
+      <td>{state.cart[i].count}</td>
+      <td>
+        <button
+          onClick={() => {
+            dispatch(addCount(state.cart[i].id));
+          }}
+        >
+          +
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+```
+
 **문법 배우는게 중요한게 아니라 언제 어떻게 사용할지 생각해보는게 훨씬 중요하다!**
 
 출처 : 코딩애플 'React 리액트 기초부터 쇼핑몰 프로젝트까지!'

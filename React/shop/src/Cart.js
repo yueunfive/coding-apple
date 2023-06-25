@@ -1,6 +1,7 @@
 import { Table } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { changeName } from "./store";
+import { changeName, changeAge } from "./store/userSlice";
+import { addCount } from "./store";
 
 function Cart() {
   // Redux store에 있던 state 남음
@@ -11,7 +12,16 @@ function Cart() {
 
   return (
     <div>
-      {state.user}
+      <h6>
+        {state.user.name} {state.user.age}의 장바구니
+      </h6>
+      <button
+        onClick={() => {
+          dispatch(changeAge(10));
+        }}
+      >
+        +10
+      </button>
       <Table>
         <thead>
           <tr>
@@ -30,7 +40,7 @@ function Cart() {
               <td>
                 <button
                   onClick={() => {
-                    dispatch(changeName());
+                    dispatch(addCount(state.cart[i].id));
                   }}
                 >
                   +
