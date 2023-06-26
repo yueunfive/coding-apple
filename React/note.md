@@ -768,6 +768,76 @@ let cart = createSlice({
 </tbody>
 ```
 
+### 과제 2
+
+: 상세페이지 주문하기 버튼을 누르면 새로운 상품이 state에 추가되는 기능
+
+```jsx
+(DetailPage.js)
+
+<button
+  className="btn btn-danger"
+  onClick={() => {
+    dispatch(addItem({ id: 1, name: "Red Knit", count: 1 }));
+  }}
+>
+  주문하기
+</button>
+
+// data랑 cart 객체 구성 다름
+// cart 구성에 맞는 객체 하나 만들어서 파라미터로 넣어야 됨
+```
+
+```jsx
+let cart = createSlice({
+  name: "cart",
+  initialState: [
+    { id: 0, name: "White and Black", count: 2 },
+    { id: 2, name: "Grey Yordan", count: 1 },
+  ],
+  reducers: {
+    addItem(state, action) {
+      state.push(action.payload);
+    },
+  },
+});
+
+export let { addItem } = cart.actions;
+```
+
+<br>
+
+## localStorage
+
+### 개념
+
+- 유저의 브라우저에 정보를 저장할 수 있는 공간
+- 사이트마다 5MB 정도의 문자 데이터를 저장
+- object 자료랑 비슷하게 key/value 형태로 저장
+
+```jsx
+localStorage.setItem("데이터이름", "데이터"); // 추가
+localStorage.getItem("데이터이름"); // 읽기
+localStorage.removeItem("데이터이름"); // 삭제
+```
+
+### localStorage에 array/object 자료를 저장하기
+
+- localStorage는 문자만 저장할 수 있는 공간
+- array/object -> JSON 이렇게 변환해서 저장
+- JSON은 따옴표친 array/object 자료로 문자 취급 받음
+
+```jsx
+// JSON.stringify() : array/object -> JSON 변환
+// JSON.parse() : JSON -> array/object 변환
+
+localStorage.setItem("obj", JSON.stringify({ name: "kim" }));
+var a = localStorage.getItem("obj"); // "{"name":"kim"}"
+var b = JSON.parse(a); // {name:'kim'}
+```
+
+<br>
+
 **문법 배우는게 중요한게 아니라 언제 어떻게 사용할지 생각해보는게 훨씬 중요하다!**
 
 출처 : 코딩애플 'React 리액트 기초부터 쇼핑몰 프로젝트까지!'

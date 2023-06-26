@@ -9,6 +9,10 @@ import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Cart from "./Cart";
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify([]));
+  }, []);
+
   let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
 

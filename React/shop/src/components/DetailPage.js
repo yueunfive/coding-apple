@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem } from "../store";
 
 export default function DetailPage(props) {
   let { id } = useParams(); // 유저가 입력한 url파라미터 가져옴 => http://localhost:3000/detail/"1"
@@ -34,6 +36,12 @@ export default function DetailPage(props) {
     };
   }, []);
 
+  // Redux store에 있던 state 남음
+  let state = useSelector((state) => {
+    return state;
+  });
+  let dispatch = useDispatch();
+
   return (
     <div className={"container start " + fade2}>
       {timer == true ? (
@@ -50,7 +58,9 @@ export default function DetailPage(props) {
       <div className="row">
         <div className="col-md-6">
           <img
-            src={"https://codingapple1.github.io/shop/shoes1.jpg"}
+            src={`https://codingapple1.github.io/shop/shoes${
+              Number(id) + 1 // 변수 id는 문자열(string)이라 숫자 타입으로 변환해줘야 함.
+            }.jpg`}
             width="100%"
           />
         </div>
@@ -61,9 +71,16 @@ export default function DetailPage(props) {
             }}
           />
           <h4 className="pt-5">{props.shoes[id].title}</h4>
-          <p>{props.shoes[0].content}</p>
-          <p>{props.shoes[0].price}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <p>{props.shoes[id].content}</p>
+          <p>{props.shoes[id].price}</p>
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              dispatch(addItem({ id: 1, name: "Red Knit", count: 1 }));
+            }}
+          >
+            주문하기
+          </button>
         </div>
       </div>
       {/* 탭 UI */}
