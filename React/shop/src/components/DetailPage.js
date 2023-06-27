@@ -6,13 +6,14 @@ import { addItem } from "../store";
 
 export default function DetailPage(props) {
   let { id } = useParams(); // 유저가 입력한 url파라미터 가져옴 => http://localhost:3000/detail/"1"
+  let findItem = props.shoes.find((x) => x.id == id);
   let [count, setCount] = useState(0);
   let [timer, setTimer] = useState(true);
   let [num, setNum] = useState("");
   let [tab, setTab] = useState(0);
   let [fade2, setFade2] = useState("");
   useEffect(() => {
-    //여기적은 코드는 컴포넌트 로드 & 업데이트 마다 실행됨
+    //여기적은 코드는 컴포 넌트 로드 & 업데이트 마다 실행됨
     let a = setTimeout(() => {
       // setTimeout() : 타이머 함수
       setTimer(false);
@@ -35,6 +36,17 @@ export default function DetailPage(props) {
       setFade2("");
     };
   }, []);
+
+  // localStorage에 저장된 배열에 새로운 값을 추가
+  useEffect(() => {
+    const watched = JSON.parse(localStorage.getItem("watched")); // 1.localStorage에서 배열을 가져오기
+    // 2.가져온 배열에 새로운 값을 추가
+    // 중복제거 : watched가 findItem.id을 포함하지 않을 경우에만 watched 배열에 findItem.id 추가
+    if (!watched.includes(findItem.id)) {
+      watched.push(findItem.id);
+    }
+    localStorage.setItem("watched", JSON.stringify(watched));
+  }, []); // 3.변경된 배열을 localStorage에 다시 저장)
 
   // Redux store에 있던 state 남음
   let state = useSelector((state) => {
@@ -90,7 +102,7 @@ export default function DetailPage(props) {
             onClick={() => {
               setTab(0);
             }}
-            eventKey="link0"
+            eventKey="link0" 
           >
             버튼0
           </Nav.Link>

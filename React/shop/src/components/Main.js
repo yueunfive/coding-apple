@@ -1,9 +1,14 @@
 import axios from "axios";
+import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
+import React, { useEffect, useState, createContext } from "react";
 
 export default function Main(props) {
+  let navigate = useNavigate();
   return (
     <div>
-      <div className="main-bg"></div>
+      <div className="main-bg">
+        <p>최근 본 상품의 id : {localStorage.getItem("watched")}</p>
+      </div>
       <div className="container">
         <div className="row">
           {props.shoes.map(function (a, i) {
@@ -16,6 +21,9 @@ export default function Main(props) {
                     ".jpg"
                   }
                   width="80%"
+                  onClick={() => {
+                    navigate(`/detail/${i}`);
+                  }}
                 />
                 <h4>{a.title}</h4>
                 <p>{a.price}</p>

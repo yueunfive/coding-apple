@@ -10,7 +10,11 @@ import Cart from "./Cart";
 
 function App() {
   useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify([]));
+    // localStorage에 watched 항목이 있으면 [] 새로 넣지 말라고 하기.
+    // === watched 항목이 없을 떄만 [] 새로 넣기
+    if (localStorage.getItem("watched" === null)) {
+      localStorage.setItem("watched", JSON.stringify([]));
+    }
   }, []);
 
   let [shoes, setShoes] = useState(data);
