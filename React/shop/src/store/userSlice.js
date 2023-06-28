@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let user = createSlice({
   name: "user",
-  initialState: { name: "oh", age: 24 },
+  initialState: { name: "yueunfive", age: 22 },
   reducers: {
     changeName(state) {
-      state.name = "park";
+      state.name = "오유은";
     },
     changeAge(state, action) {
       state.age += action.payload;

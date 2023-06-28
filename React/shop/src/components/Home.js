@@ -2,8 +2,10 @@ import axios from "axios";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import React, { useEffect, useState, createContext } from "react";
 
-export default function Main(props) {
+export default function Home(props) {
   let navigate = useNavigate();
+  let [visible, setVisible] = useState(false);
+
   return (
     <div>
       <div className="main-bg">
@@ -33,19 +35,25 @@ export default function Main(props) {
         </div>
         <button
           onClick={() => {
-            axios
-              .get("https://codingapple1.github.io/shop/data2.json")
-              // shoes에 데이터 몇 개 추가하기
-              .then((result) => {
-                let copy = [...props.shoes, ...result.data];
-                props.setShoes(copy);
-              })
-              .catch(() => {
-                alert("ajax fail...");
-              });
+            setVisible(!visible);
+            if (!visible) {
+              axios
+                .get("https://codingapple1.github.io/shop/data2.json")
+                // shoes에 데이터 몇 개 추가하기
+                .then((result) => {
+                  let copy = [...props.shoes, ...result.data];
+                  props.setShoes(copy);
+                })
+                .catch(() => {
+                  alert("ajax fail...");
+                });
+            } else {
+              let copy = [...props.shoes].splice(3, 3);
+              props.setShoes(copy);
+            }
           }}
         >
-          더보기
+          {visible ? "숨기기" : "더보기"}
         </button>
       </div>
     </div>

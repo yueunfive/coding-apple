@@ -1,17 +1,18 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Navbar, Container, Nav } from "react-bootstrap";
-import Main from "./components/Main";
-import DetailPage from "./components/DetailPage";
+import Home from "./components/Home";
+import Detail from "./components/Detail";
+import Cart from "./components/Cart";
+import Event from "./components/Event";
 import data from "./data.js";
 import React, { useEffect, useState, createContext } from "react";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
-import Cart from "./Cart";
 
 function App() {
   useEffect(() => {
     // localStorage에 watched 항목이 있으면 [] 새로 넣지 말라고 하기.
-    // === watched 항목이 없을 떄만 [] 새로 넣기
+    // -> watched 항목이 없을 떄만 [] 새로 넣기
     if (localStorage.getItem("watched" === null)) {
       localStorage.setItem("watched", JSON.stringify([]));
     }
@@ -42,7 +43,7 @@ function App() {
             </Nav.Link>
             <Nav.Link
               onClick={() => {
-                navigate("/event/service");
+                navigate("/event");
               }}
             >
               Event
@@ -59,23 +60,14 @@ function App() {
       </Navbar>
 
       <Routes>
-        <Route path="/" element={<Main shoes={shoes} setShoes={setShoes} />} />
-        <Route path="/detail/:id" element={<DetailPage shoes={shoes} />} />
+        <Route path="/" element={<Home shoes={shoes} setShoes={setShoes} />} />
+        <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
         <Route path="/event" element={<Event />}>
           <Route path="service" element={<div>첫 주문 양배추즙 서비스</div>} />
           <Route path="coupon" element={<div>생일기념 쿠폰받기</div>} />
         </Route>
         <Route path="/cart" element={<Cart />} />
       </Routes>
-    </div>
-  );
-}
-
-function Event() {
-  return (
-    <div>
-      <h4>오늘의 이벤트</h4>
-      <Outlet></Outlet>
     </div>
   );
 }
