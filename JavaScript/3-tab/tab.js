@@ -7,6 +7,14 @@
 let btn = $(".tab-button"); // 좋은 관습 : 자주 쓰는 셀렉터는 변수에 넣어쓰기
 let cnt = $(".tab-content");
 
+// 축약할 코드에 변수가 있으면 변수를 파라미터로 바꿔야 잘 된다.
+function openTab(a) {
+  btn.removeClass("orange");
+  btn.eq(a).addClass("orange");
+  cnt.removeClass("show");
+  cnt.eq(a).addClass("show");
+}
+
 // for 반복문 : for(횟수){} -> 코드 복붙 (반복실행)
 // $( ).eq(x) : $( ) 셀렉터로 찾은 요소 중에 x번째 요소만 선택(=인덱싱)
 // for (let i = 0; i < btn.length; i++) {
@@ -22,16 +30,6 @@ $(".list").click(function (e) {
   openTab(e.target.dataset.id); // 지금 누른 버튼의 data-id(== html에 몰래 숨긴 데이터)
 });
 
-// 축약할 코드에 변수가 있으면 변수를 파라미터로 바꿔야 잘 된다.
-function openTab(a) {
-  btn.removeClass("orange");
-  btn.eq(a).addClass("orange");
-  cnt.removeClass("show");
-  cnt.eq(a).addClass("show");
-}
-
-//
-
 // array & object
 let car2 = {
   name: "소나타",
@@ -40,8 +38,6 @@ let car2 = {
 };
 $(".card span").eq(0).html(car2["name"]);
 $(".card span").eq(1).html(car2.price[0]);
-
-//
 
 // select input(input의 값을 변경할 때 input 이벤트 발동)
 // 자바스크립트로 html 생성
@@ -58,7 +54,7 @@ $(".form-select")
       $(".form-select").eq(1).html("");
       shirts.forEach(function (data) {
         // forEach 내부 함수의 파라미터 : array 안에 있던 데이터들
-        $(".form-select").eq(1).append(`<option>${data}</option>`);
+        $(".form-select").eq(1).append(`<option>${data}</option>`); // append : 안쪽 맨 밑에 추가
       });
     } else if (this.value == "바지") {
       $(".form-select").eq(1).removeClass("form-hide");

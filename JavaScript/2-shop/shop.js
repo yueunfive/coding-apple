@@ -96,8 +96,7 @@ $(".slideAfter").on("click", function () {
   }
 });
 // 응용 : 확장성 - if문 필요없이 다음버튼 누르면 'translateX(-지금사진vw)'로 이동시키도록 코드 1줄만 짜면 끝!
-// 이 부분 안된다.. 나중에 집중적으로 보자
-// $("slideAfter").on("click", function () {
+// $(".slideAfter").on("click", function () {
 //   $(".slide-container").css("transform", "translateX(-" + presentImg + "00vw)");
 //   presentImg++;
 // });
@@ -128,7 +127,7 @@ $(".lorem").on("scroll", function () {
   let 실제높이 = document.querySelector(".lorem").scrollHeight; // .scrollHeight : 스크롤가능한 실제높이
   let 박스높이 = document.querySelector(".lorem").clientHeight; // .clientHeight : 박스가 화면에 보이는 부분 높이
   // 스크롤 내린 양이 소수 단위로 부정확하게 나와서 여유있게 비교하기
-  if (스크롤양 + 박스높이 >= 실제높이 - 10) {
+  if (스크롤양 + 박스높이 >= 실제높이 - 1) {
     alert("다 보셨군요:)");
   }
 });

@@ -686,9 +686,9 @@ $.post("url~~", { name: "kim" });
 
 ## sort
 
-: sort : array 정렬
+: array 정렬
 
-- sort 함수 작동원리 - arr.sort(function(a,b) {…
+- sort 함수 작동원리 : arr.sort(function(a,b) {…
   - a, b는 array안에 있던 자료들이다.
   - return 우측이 양수면 a를 우측으로 보낸다.
   - return 우측이 음수면 b를 우측으로 보낸다.

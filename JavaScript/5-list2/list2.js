@@ -92,3 +92,5 @@ $("#filter-btn").click(function () {
     <p>${a.price}</p>`);
   });
 });
+
+// forEach 대신 map 써도 작동한다. 차이점은 TIL 참고!
