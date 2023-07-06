@@ -9,7 +9,22 @@ products.forEach((a, i) => {
   $(".row").append(`<div class="col-sm-4">
   <img src="https://via.placeholder.com/600" class="w-100" />
   <h5>${products[i].title}</h5> 
-  <p>${products[i].price}</p>`);
+  <p>${products[i].price}</p>
+  <button class="buy">구매</button>`);
+});
+
+// localStorage
+// 구매 버튼 누르면 상품명(윗윗 글자)을 가져와서 localStorage에 저장
+// 따라친거니까 나중에 혼자 다시 짜보기
+$(".buy").click(function (e) {
+  let title = $(e.target).siblings("h5").text(); // siblings() : 형제요소(나란히 있는 태그)
+  if (localStorage.getItem("cart") != null) {
+    let pull = JSON.parse(localStorage.cart);
+    pull.push(title);
+    localStorage.setItem("cart", JSON.stringify(pull));
+  } else {
+    localStorage.setItem("cart", JSON.stringify([title]));
+  }
 });
 
 // 상품 더보기 버튼 누르면 상품 3개 가져오기(ajax 활용)

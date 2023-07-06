@@ -758,4 +758,56 @@ var newarr = arr.map(function (a) {
 // [8, 12, 48, 28, 160]
 ```
 
+<br>
+
+## jQuery) .value → .val()로 쓴다
+
+```jsx
+<input type="text" id="answer" />
+..
+// 위 input 값
+document.querySelector("#answer").value // JS.ver
+("#answer").val() == 1335 // jQuery.ver
+```
+
+<br>
+
+## forEach()와 map()의 차이점
+
+`map`과 `forEach`는 둘 다 배열의 모든 요소를 순회하며 콜백 함수를 실행하며, 주어진 함수를 사용하여 각 요소를 수정할 수 있다.
+
+그러나 이 두 메서드의 가장 큰 차이점은 `map`이 새로운 배열을 반환하는 반면 `forEach`는 반환하지 않는다.
+
+또한 `map`은 return 값을 출력하는 반면, `forEach`는 출력하지 않는다.
+
+```jsx
+// forEach()
+const arr = [1, 2, 3, 4, 5];
+const newArr = [];
+
+arr.forEach((num) => {
+  newArr.push(num * 3);
+});
+console.log(newArr); // [3, 6, 9, 12, 15]
+
+let a = arr.forEach(function (value) {
+  return value;
+});
+console.log(a); // undefined
+```
+
+```jsx
+// map()
+const arr = [1, 2, 3, 4, 5];
+const newArr = arr.map((num) => num * 3);
+console.log(newArr); // [3, 6, 9, 12, 15]
+
+let a = arr.map(function (value) {
+  return value + 1;
+});
+console.log(a); // [2,3,4,5,6]
+```
+
+결론 : `map`은 배열 안에 있는 데이터를 살짝 변형한 새로운 배열을 만들고 싶을 때, `forEach`는 그냥 배열 가지고 반복문 돌리고 싶을 때 주로 사용한다.
+
 출처 : 코딩애플 'JavaScript 입문과 웹 UI개발'
