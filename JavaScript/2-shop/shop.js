@@ -145,3 +145,9 @@ $(".black-bg").on("click", function (e) {
     $(".black-bg").removeClass("show-modal");
   }
 });
+
+// 캐러셀에 스와이프 기능 만들기
+// 이벤트리스너 : mousedown 마우스로 누를때, mouseup 마우스 뗄때, mousemove 마우스 움직일 때
+$(".slide-Box")
+  .eq(0)
+  .on("mousedown", function () {});

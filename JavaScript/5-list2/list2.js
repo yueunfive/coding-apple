@@ -14,7 +14,7 @@ products.forEach((a, i) => {
 });
 
 // localStorage
-// 구매 버튼 누르면 상품명(윗윗 글자)을 가져와서 localStorage에 저장
+// 구매 버튼 누르면 상품명(윗윗 글자)을 가져와서 localStorage에 저장(하나의 배열로)
 // 따라친거니까 나중에 혼자 다시 짜보기
 $(".buy").click(function (e) {
   let title = $(e.target).siblings("h5").text(); // siblings() : 형제요소(나란히 있는 태그)
