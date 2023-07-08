@@ -50,7 +50,7 @@
 /* carousel */
 .slide-container {
   width: 300vw; /* 브라우저폭 == 100vw */
-  transition: all 1s;
+  /* transition: all 1s; 캐러셀 스와이프 때문에 없앴음 */
 }
 .slide-box {
   width: 100vw;

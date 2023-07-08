@@ -810,4 +810,41 @@ console.log(a); // [2,3,4,5,6]
 
 결론 : `map`은 배열 안에 있는 데이터를 살짝 변형한 새로운 배열을 만들고 싶을 때, `forEach`는 그냥 배열 가지고 반복문 돌리고 싶을 때 주로 사용한다.
 
+<br>
+
+## switch 문법
+
+- if else 문법의 간단 ver
+- switch의 소괄호(..) : 조건식이 아니라 검사할 변수를 넣기
+- break : 코드 실행 끝내기. 중괄호 탈출!
+- default : case에 해당되는게 하나도 없을 때 안에 있는 코드를 실행. else랑 같음!
+- 쓰는 이유
+  - 변수값에 따른 조건분기를 만들고 싶을 때 조금 더 간편하게 적을 수 있어서
+  - if else보다 괄호 적으니까.
+
+```html
+<div id="quiz">
+  <h4>물에 빠지면 누구먼저 구할 것임?</h4>
+  <button>와이프</button>
+  <button>부모님</button>
+  <button>키우던 개</button>
+</div>
+```
+
+```jsx
+document.querySelector("#quiz").addEventListener("click", function (e) {
+  switch (e.target.innerHTML) {
+    case "와이프":
+      alert("와이프를 좋아하시네요");
+      break;
+    case "부모님":
+      alert("효자네요");
+      break;
+    case "키우던 개":
+      alert("역시 사람보단 동물이 더 낫죠");
+      break;
+  }
+});
+```
+
 출처 : 코딩애플 'JavaScript 입문과 웹 UI개발'

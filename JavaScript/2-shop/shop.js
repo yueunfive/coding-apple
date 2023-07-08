@@ -147,7 +147,41 @@ $(".black-bg").on("click", function (e) {
 });
 
 // 캐러셀에 스와이프 기능 만들기
-// 이벤트리스너 : mousedown 마우스로 누를때, mouseup 마우스 뗄때, mousemove 마우스 움직일 때
-$(".slide-Box")
+// 이벤트리스너 : mousedown 마우스버튼 눌렀을 때, mouseup 마우스버튼 뗐을 때, mousemove 마우스 이동할 때
+// 변수는 함수 밖을 못 나가기 때문에 함수 밖에서 전역변수 만들어놓기
+// 바로 변수부터 만드는거 아님! 짜다 보면 아 변수 필요하겠구나 하고 느낌 오면 그때 ㄱ
+let 시작좌표 = 0;
+let 이동거리 = 0;
+let 눌렀나요 = false;
+$(".slide-box")
   .eq(0)
-  .on("mousedown", function () {});
+  .on("mousedown", function (e) {
+    시작좌표 = e.clientX; // e.clientX : X 좌표
+    눌렀나요 = true;
+  });
+$(".slide-box")
+  .eq(0)
+  .on("mousemove", function (e) {
+    이동거리 = e.clientX - 시작좌표;
+    if (눌렀나요) {
+      $(".slide-container").css("transform", `translateX(${이동거리}px)`);
+    }
+  });
+$(".slide-box")
+  .eq(0)
+  .on("mouseup", function (e) {
+    눌렀나요 = false;
+    if (이동거리 < -100) {
+      $(".slide-container")
+        .css("transition", "all 0.5s")
+        .css("transform", "translateX(-100vw)");
+    } else {
+      $(".slide-container")
+        .css("transition", "all 0.5s")
+        .css("transform", "translateX(0vw)");
+    }
+    // 마우스 떼면 잠깐 0.5초정도 transition 붙였다가 떼주기 (계속 transition 붙어있으면 스와이프할 때부터 느려짐)
+    setTimeout(() => {
+      $(".slide-container").css("transition", "none");
+    }, 500);
+  });
